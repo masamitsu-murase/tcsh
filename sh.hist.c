@@ -1321,6 +1321,9 @@ rechist(Char *fname, int ref)
     xclose(fp);
     SHOUT = ftmp;
     didfds = oldidfds;
+#ifdef WINNT_NATIVE
+    (void)remove(short2str(fname));
+#endif
     (void)rename(path, short2str(fname));
     cleanup_until(fname);
 }
